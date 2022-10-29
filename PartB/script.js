@@ -1,69 +1,75 @@
-let sec1 = 0;
-let min1 = 0;
-let hr1 = 0;
+let seconds = 0;
+let minutes1 = 0;
+let hours1 = 0;
 
-let displaysec1 = 0;
-let displaymin1 = 0;
-let displayhr1 = 0;
+let displaysecs = 0;
+let dispmins = 0;
+let disphrs = 0;
 
 let interval = null;
 let status = "stopped";
 
-function stopWatch() {
-  sec1++;
+function timeStop() {
+  seconds++;
 
-  if (sec1 / 60 === 1) {
-    sec1 = 0;
-    min1++;
-    if (min1 / 60 === 1) {
-      min1 = 0;
-      hr1++;
+  if (seconds / 60 === 1) {
+    seconds = 0;
+    minutes1++;
+    
+    
+    if (minutes1 / 60 === 1) {
+      minutes1 = 0;
+      hours1++;
     }
   }
 
-  if (sec1 < 10) {
-    displaysec1 = "0" + sec1.toString();
+  if (seconds < 10) {
+    displaysecs = "0" + seconds.toString();
   } else {
-    displaysec1 = sec1;
+    displaysecs = seconds;
   }
-  if (min1 < 10) {
-    displaymin1 = "0" + min1.toString();
-  } else {
-    displaymin1 = min1;
+  if (minutes1 < 10) {
+    dispmins = "0" + minutes1.toString();
+  } 
+  
+  else {
+    
+    
+    dispmins = minutes1;
   }
-  if (hr1 < 10) {
-    displayhr1 = "0" + hr1.toString();
+  if (hours1 < 10) {
+    disphrs = "0" + hours1.toString();
   } else {
-    displayhr1 = hr1;
+    disphrs = hours1;
   }
 
-  document.getElementById("display").innerHTML =
-    displayhr1 + ":" + displaymin1 + ":" + displaysec1;
+  document.getElementById("timeDisplay").innerHTML =
+    disphrs + ":" + dispmins + ":" + displaysecs;
 }
-async function delay(ms) {
+async function timeDelay(ms) {
   return await new Promise((resolve) => setInterval(resolve, ms));
 }
 
-async function starttimer() {
+async function timeRunning() {
   status = "started";
   while (status !== "stopped") {
-    await delay(1000);
-    stopWatch();
-    document.getElementById("starttimer").innerHTML = "START";
+    await timeDelay(1000);
+    timeStop();
+    document.getElementById("timeRunning").innerHTML = "START";
   }
 }
 
-function stoptimer() {
+function pausetime() {
   window.clearInterval(interval);
-  document.getElementById("stoptimer").innerHTML = "STOP";
+  document.getElementById("pausetime").innerHTML = "paused";
   status = "stopped";
 }
 
-function reset() {
+function restart() {
   window.clearInterval(interval);
-  sec1 = 0;
-  min1 = 0;
-  hr1 = 0;
-  document.getElementById("display").innerHTML = "00:00:00";
-  document.getElementById("stoptimer").innerHTML = "STOP";
+  seconds = 0;
+  minutes1 = 0;
+  hours1 = 0;
+  document.getElementById("timeDisplay").innerHTML = "00:00:00";
+  document.getElementById("restart").innerHTML = "RESET";
 }
