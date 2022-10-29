@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            var myInterval = setInterval(myTimer, 1000);
+            let i = 0;
+            function myTimer() {
+            document.getElementById("timeDisplay").innerHTML = i;
+            i++;
+
+            document.getElementById('stop').addEventListener('click',function(){
+            clearInterval(myInterval);
+            myInterval = null; //clean myInterval
+            })
+            document.getElementById('startTimer').addEventListener('click',function(){
+            myInterval = setInterval(myTimer, 1000);
+            })
+
+            async function timeDelay(ms) {
+              return await new Promise((resolve) => setInterval(resolve, ms));
+            }
+            // Function to restart the timer
+              function restart() {
+                window.clearInterval(myInterval);
+
+
+                milli_secs = 0;
+                minutes1 = 0;
+                hours1 = 0;
+                document.getElementById("timeDisplay").innerHTML = "00:00:00";
+                
+              }
+}
+        </script>
+    </head>
+    <body>
+        <p id = 'timeDisplay'>00:00:00</p>
+        <button id = 'stop'> stop</button>
+        <button id = 'startTimer'> start </button>
+        <button id = 'Reset' onclick="restart()"> Reset </button>
+    </body>
+</html>
