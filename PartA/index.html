@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+<title>Calculator</title>
+   
+    
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/
+	4.0.0/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/
+	jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/
+	4.0.0/js/bootstrap.min.js"></script>
+    <script src="./jquery.js"></script>
+  </head>
+
+  <body class>
+    <br />
+    
+
+    <div class="container bg-light row-md-5">
+      <h1 class="text-center">Login</h1>
+      <div class="col-md-6 m-auto">
+        <form action="main.html">
+          <div class="form-group">
+            <label for="user"> Username: </label>
+            <input
+              type="text"
+              name="username"
+              id="userid"
+              class="form-control"
+              requiblack
+            />
+            <h5 id="usererror" style="color: black">Username Missing!</h5>
+          </div>
+
+          <div class="form-group">
+            <label for="user"> Email: </label>
+            <input type="text" name="email" id="emailid" class="form-control" />
+            <h5 id="emailerror" style="color: black">EmailId Missing!</h5>
+          </div>
+
+          <div class="form-group">
+            <label for="password"> Password: </label>
+            <input
+              type="password"
+              name="pass"
+              id="password"
+              class="form-control"
+            />
+            <h5 id="passerror" style="color: black">
+              Please enter the password
+            </h5>
+          </div>
+
+          <input
+            type="submit"
+            id="submitbtn"
+            value="Submit"
+            class="btn btn-primary"
+          />
+        </form>
+      </div>
+    </div>
+
+  </body>
+</html>
