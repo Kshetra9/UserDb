@@ -1,136 +1,105 @@
 // Document is ready
 $(document).ready(function () {
-  $("#usererror").hide();
+  // Validate Username
+  $("#uservalidation").hide();
   let usernameError = true;
-  $("#userid").keyup(function () {
+  $("#membername").keyup(function () {
     validateUsername();
   });
-
+  
   function validateUsername() {
-    let usernameValue = $("#userid").val();
-    let regex = /^[A-Za-z0-9]+$/;
+    let usernameValue = $("#membername").val();
     if (usernameValue.length == "") {
-      $("#usererror").show();
-      usernameError = false;
-      return false;
-    } else if (
-      (usernameValue.length > 0 && usernameValue.length < 4) ||
-      usernameValue.length > 10
-    ) {
-      $("#usererror").show();
-      $("#usererror").html(
-        "Please Enter a valid User Name between 4 and 10 characters"
-      );
-      usernameError = false;
-      return false;
-    } else if (!regex.test(usernameValue)) {
-      $("#usererror").show();
-      $("#usererror").html("Speacial characters are not allowed");
-      usernameError = false;
-      return false;
+    $("#uservalidation").show();
+    usernameError = false;
+    return false;
+    } else if (usernameValue.length < 3 || usernameValue.length > 10) {
+    $("#uservalidation").show();
+    $("#uservalidation").html("**length of username must be between 4 and 10");
+    usernameError = false;
+    return false;
     } else {
-      $("#usererror").hide();
-      usernameError = true;
+    $("#uservalidation").hide();
+    usernameError = true;
     }
   }
 
-  $("#emailerror").hide();
-  let emailError = true;
+  $("#emailvalidation").hide();
+  let emailvalidation = true;
   $("#emailid").keyup(function () {
-    validateEmail();
+    validationofEmail();
   });
-
-  function validateEmail() {
-    let emailValue = $("#emailid").val();
+  
+  // Validate Email
+  function validationofEmail() {
+    let emailVal = $("#emailid").val();
     let regex2 = /^([\w\.]+)@northeastern.edu$/;
-    if (emailValue.length == "") {
-      $("#emailerror").show();
-      emailError = false;
+    if (emailVal.length == "") {
+      $("#emailvalidation").show();
+      emailvalidation = false;
       return false;
-    } else if (!regex2.test(emailValue)) {
-      $("#emailerror").show();
-      $("#emailerror").html("Please enter a Northeastern mail ID");
+    } else if (!regex2.test(emailVal)) {
+      $("#emailvalidation").show();
+      $("#emailvalidation").html("Please enter a Northeastern mail ID");
       usernameError = false;
       return false;
-    } else if (emailValue.length < 19) {
-      $("#emailerror").show();
-      $("#emailerror").html("Please enter a Valid email ID");
-      emailError = false;
+    } else if (emailVal.length < 19) {
+      $("#emailvalidation").show();
+      $("#emailvalidation").html("Not a Valid email ID");
+      emailvalidation = false;
       return false;
     } else {
-      $("#emailerror").hide();
-      emailError = true;
+      $("#emailvalidation").hide();
+      emailvalidation = true;
     }
   }
-
-  $("#passerror").hide();
+  
+  // Validate Password
+  $("#passwordval").hide();
   let passwordError = true;
-  let regex3 = new RegExp("^(?=.*[a-z])");
-  let regex4 = new RegExp("^(?=.*[A-Z])");
-  let regex5 = new RegExp("^(?=.*[0-9])");
-  $("#password").keyup(function () {
+  $("#passcheck").keyup(function () {
     validatePassword();
   });
   function validatePassword() {
-    let passwordValue = $("#password").val();
-    if (passwordValue.length == "") {
-      $("#passerror").show();
-      passwordError = false;
-      return false;
-    } else if (passwordValue.length < 6) {
-      $("#passerror").show();
-      $("#passerror").html("Please enter a Password of 6 or more characters");
-      $("#passerror").css("color", "red");
-      passwordError = false;
-      return false;
-    } else if (!regex3.test(passwordValue)) {
-      $("#passerror").show();
-      $("#passerror").html(
-        "Password must contain at least 1 lowercase character"
-      );
-      passwordError = false;
-      return false;
-    } else if (!regex4.test(passwordValue)) {
-      $("#passerror").show();
-      $("#passerror").html(
-        "Password must contain at least 1 uppercase character"
-      );
-      passwordError = false;
-      return false;
-    } else if (!regex5.test(passwordValue)) {
-      $("#passerror").show();
-      $("#passerror").html(
-        "Password must contain at least 1 numeric character"
-      );
-      passwordError = false;
-      return false;
+    let passwordvalue = $("#passcheck").val();
+    if (passwordvalue.length == "") {
+    $("#passwordval").show();
+    passwordError = false;
+    return false;
+    }
+    if (passwordvalue.length < 4 || passwordvalue.length > 16) {
+    $("#passwordval").show();
+    $("#passwordval").html(
+      "**length of your password must be between 4 and 10"
+    );
+    $("#passwordval").css("color", "red");
+    passwordError = false;
+    return false;
     } else {
-      $("#passerror").hide();
-      passwordError = true;
+    $("#passwordval").hide();
+    passwordError = true;
     }
   }
-
+  
+ 
+  
   // Submit button
   $("#submitbtn").click(function () {
     validateUsername();
-    validateEmail();
     validatePassword();
-    if (usernameError == true && passwordError == true && emailError == true) {
-      if (
-        $("#userid").val() == "Kshetra" &&
-        $("#emailid").val() == "heggunjemahabala.k@northeastern.edu" &&
-        $("#password").val() == "Kshetra@123"
-      ) {
-        return true;
-      } else {
-        alert(
-          "Login Unsuccesful! Please check either your Username, Email or Password"
-        );
-        return false;
-      }
+    validationofEmail();
+    if ( usernameError == true && passwordError == true && emailvalidation == true) {
+      return true;
+    
+    
     } else {
-      alert("Please enter all the details");
+      alert(
+        "Login Unsuccesful! Please check either your Username, Email or Password"
+      );
       return false;
     }
+
+  
   });
-});
+  });
+  

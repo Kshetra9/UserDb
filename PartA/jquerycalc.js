@@ -4,81 +4,82 @@ $(document).ready(function () {
   const name = urlParams.get("username");
   $("#name").html("Welcome, " + name);
 
-  $(".calc").click(function () {
+  $(".result").click(function () {
     // result();
 
-    var x1 = $("#first").val();
+    var val1 = $("#txtFirstNumber").val();
     var reg1 = /^[0-9]+$/;
-    var x2 = $("#txtNo2").val();
+    var val2 = $("#txtSecondNumber").val();
     var reg2 = /^[0-9]+$/;
-    if (x1.length == "" && x2.length == "") {
-      $("#No1").show();
-      $("#txtNo2check").show();
+    if (val1.length == "" && val2.length == "") {
+        $("#No1").show();
+        $("#txtSecondNumbercheck").show();
     }
-    if (reg2.test(x2) && reg1.test(x1)) {
-      var operand = $(this).attr("id");
+    if (reg2.test(val2) && reg1.test(val1)) {
+      var finaloperator = $(this).attr("id");
       var output = () => {
-        if (operand == "add") {
-          return parseInt(x1) + parseInt(x2);
-        } else if (operand == "sub") {
-          return parseInt(x1) - parseInt(x2);
-        } else if (operand == "mul") {
-          return parseInt(x1) * parseInt(x2);
-        } else if (operand == "div") {
-          return parseInt(x1) / parseInt(x2);
+        if (finaloperator == "btnADD") {
+          return parseInt(val1) + parseInt(val2);
+        } else if (finaloperator == "btnSUB") {
+          return parseInt(val1) - parseInt(val2);
+        } else if (finaloperator == "btnMUL") {
+          return parseInt(val1) * parseInt(val2);
+        } else if (finaloperator == "btnDIV") {
+          return parseInt(val1) / parseInt(val2);
         }
       };
       $("#result").val(output);
     }
   });
 
+
   // Validate
   $("#No1").hide();
-  let tError = true;
-  $("#first").keyup(function () {
-    validatet1();
+  let terrVal = true;
+  $("#txtFirstNumber").keyup(function () {
+    chk1();
   });
 
-  function validatet1() {
-    var t1Value = $("#first").val();
+  function chk1() {
+    var t1Value = $("#txtFirstNumber").val();
     var regex = /^[0-9]+$/;
     if (t1Value.length == "") {
       $("#No1").show();
-      tError = false;
+      terrVal = false;
       return false;
     } else if (!regex.test(t1Value)) {
       $("#No1").show();
       $("#No1").html("Please Enter a Valid Number");
-      tError = false;
+      terrVal = false;
       return false;
     } else {
       $("#No1").hide();
-      tError = true;
+      terrVal = true;
     }
   }
 
   // Validate
 
-  $("#txtNo2check").hide();
+  $("#No2").hide();
   let t2Error = true;
-  $("#txtNo2").keyup(function () {
-    validatet2();
+  $("#txtSecondNumber").keyup(function () {
+    chk2();
   });
 
-  function validatet2() {
-    var t2Value = $("#txtNo2").val();
-    var regex2 = /^[0-9]+$/;
+  function chk2() {
+    var t2Value = $("#txtSecondNumber").val();
+    var regeval2 = /^[0-9]+$/;
     if (t2Value.length == "") {
-      $("#txtNo2check").show();
+      $("#No2").show();
       t2Error = false;
       return false;
-    } else if (!regex2.test(t2Value)) {
-      $("#txtNo2check").show();
-      $("#txtNo2check").html("Please Enter a Valid Number");
+    } else if (!regeval2.test(t2Value)) {
+      $("#No2").show();
+      $("#No2").html("Please Enter a Valid Number");
       t2Error = false;
       return false;
     } else {
-      $("#txtNo2check").hide();
+      $("#No2").hide();
       t2Error = true;
     }
   }

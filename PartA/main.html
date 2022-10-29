@@ -9,38 +9,25 @@
     <script src="./jquerycalc.js"></script>
   </head>
   <body>
-    <form action="calc.html">
+    
       <div class="form-group">
         <h2 id="name">Welcome,</h2>
-        <label for="t1"> First Number: </label>
-        <input
-          type="text"
-          name="t1"
-          id="first"
-          class="form-control"
-          requiblack
-        />
-        <h5 id="No1" style="color: black">Enter a Valid Number</h5>
+        
       </div>
       <br /><br />
 
-      <div class="form-group">
-        <label for="t2"> Second Number: </label>
-        <input type="text" name="t2" id="txtNo2" class="form-control" />
-        <h5 id="txtNo2check" style="color: black">**Enter a Valid Number</h5>
-      </div>
-      <br /><br />
-
-      <input type="button" id="add" class="calc Addition" value="Add" />
-      <input type="button" id="sub" value="Subtract" class="calc Subtract" />
-      <input type="button" id="mul" value="Multiply" class="calc Multiply" />
-      <input type="button" id="div" value="Divide" class="calc Divide" />
+      Number1:<input type="text" id="txtFirstNumber" /><br><br> <h5 id="No1" style="color: black">Enter a Valid Number</h5>
+					Number2:<input type="text" id="txtSecondNumber" /><br><br> <h5 id="No2" style="color: black">**Enter a Valid Number</h5>
+					<input type="button" id="btnADD" class="result Addition" value="Addition" />
+					<input type="button" id="btnSUB" class="result Subtract" value="Subtraction" /><br><br>
+					<input type="button" id="btnMUL" class="result Multiplication" value="Multiplication" />
+					<input type="button" id="btnDIV" class="result Division" value="Division" />
 
       <br /><br />
       <div class="form-group">
         <label for="password"> Result : </label>
         <input input type="text" id="result" placeholder="Result" readonly />
       </div>
-    </form>
+    
   </body>
 </html>
