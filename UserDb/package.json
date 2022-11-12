@@ -1,0 +1,18 @@
+{
+  "name": "userdb",
+  "version": "1.0.0",
+  "description": "A simple database to perform CRUD operations of user",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Kshetra",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "check-password-strength": "^2.0.7",
+    "dotenv": "^16.0.3",
+    "node-gyp": "^9.3.0",
+    "nodemon": "^2.0.20"
+  }
+}
