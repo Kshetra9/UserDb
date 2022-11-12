@@ -89,7 +89,7 @@ router.get('/getOne/:email', (req, res) => {
 })
 
 //PUT Method
-router.put('/edit/:name', async (req, res) => {
+router.put('/edit/:email', async (req, res) => {
     try{
 
         const fullnameRegexp =
@@ -106,7 +106,7 @@ router.put('/edit/:name', async (req, res) => {
               message: "Weak Password, try again with a harder password",
             });
           }
-        let updatename = req.params.name;
+        let updateemail = req.params.email;
 
         let uppwd = req.body.password;
         let upname = req.body.name;
@@ -122,7 +122,7 @@ router.put('/edit/:name', async (req, res) => {
         // now we set user password to hashed password
         data1.password = await bcrypt.hash(data1.password, salt);
 
-        Model.findOneAndUpdate({name:updatename}, {$set:{name:upname,password:data1.password}},{new:true},(err,data1) => {
+        Model.findOneAndUpdate({email:updateemail}, {$set:{name:upname,password:data1.password}},{new:true},(err,data1) => {
             if(data1==null) {
                 res.send("Please verify if all user details are correct. NOTE : Email ID cannot be updated")
             }else {
